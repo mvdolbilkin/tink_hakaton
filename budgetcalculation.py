@@ -12,7 +12,9 @@ def get_data(brand_id):
         for row in reader:
             if brand_id == row['brand_id']:
                 trxn_sum.append(float(row["trxn_sum"]))
-                print(trxn_sum)
-    return sum(trxn_sum)
+    return sum(trxn_sum) / len(trxn_sum)
 
-print(get_data())
+def budget_calculation(brand_id):
+    # Логика расчета бюджета для данного user_id
+    # Например, возвращаем строку с расчетами
+    return f"Budget Calculation for ID: {get_data(brand_id)} with calculated values."
