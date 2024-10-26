@@ -7,13 +7,15 @@ app = Flask(__name__)
 def hello():
     return "Hello, world!"
 
-@app.route('/budget-calculation', methods=['GET'])
-def get_budgetCalculation():
-    return "get_budgetCalculation"
+@app.route('/budget-calculation', methods=['POST'])
+def post_budgetCalculation():
+    return f"post_budgetCalculation"
 
-@app.route('/budget-calculation/<id>', methods=['POST'])
-def post_budgetCalculation(id):
-    return f"post_budgetCalculation {id}"
+
+@app.route('/budget-calculation/<id>', methods=['GET'])
+def get_budgetCalculation(id):
+    return f"get_budgetCalculation {id}"
+
 
 
 
