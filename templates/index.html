@@ -1,22 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Calculation</title>
+    <script>
+        function toggleInput() {
+            const fileInput = document.getElementById("client_file");
+            const fileInput_text = document.getElementById("file_input_container");
+            const linkInput = document.getElementById("file_link");
+            const linkInput_text = document.getElementById("link_input_container");
+            const fileOption = document.getElementById("file_option");
+            const linkOption = document.getElementById("link_option");
+            const textArea = document.getElementById("additional_text");
+
+            if (fileOption.checked) {
+                fileInput.style.display = "block"; // Show file upload input
+                fileInput_text.style.display = "block";
+                linkInput_text.style.display = "none";
+                linkInput.style.display = "none"; // Hide link input
+
+
+            } else if (linkOption.checked) {
+                fileInput.style.display = "none"; // Hide file upload input
+                linkInput.style.display = "block"; // Show link input
+                fileInput_text.style.display = "none";
+                linkInput_text.style.display = "block";
+
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Enter your ID and Upload File for Budget Calculation</h1>
+    <h1>Enter your ID and Upload File or Link for Budget Calculation</h1>
     <form action="/budget-calculation" method="POST" enctype="multipart/form-data">
         <label for="brand_id">Enter ID:</label>
         <input type="text" id="brand_id" name="brand_id" required>
 
         <br><br>
 
-        <label for="client_file">Upload Client File:</label>
-        <input type="file" id="client_file" name="client_file" required>
+        <label>Select Input Method:</label>
+        <input type="radio" id="file_option" name="input_method" value="file" onclick="toggleInput()" checked>
+        <label for="file_option">Upload File</label>
+        <input type="radio" id="link_option" name="input_method" value="link" onclick="toggleInput()">
+        <label for="link_option">Enter Link</label>
 
         <br><br>
 
+        <div id="file_input_container">
+            <label for="client_file">Upload Client File:</label>
+            <input type="file" id="client_file" name="client_file" required>
+
+            <br><br>
+        </div>
+
+        <div id="link_input_container" style="display: none;">
+            <label for="file_link">File Link:</label>
+            <input type="url" id="file_link" name="file_link" placeholder="Enter URL to the file" required>
+
+            <br><br>
+        </div>
+
         <button type="submit">Submit</button>
     </form>
+
+    <script>
+        // Initial state
+        toggleInput(); // Set initial state
+    </script>
 </body>
 </html>
