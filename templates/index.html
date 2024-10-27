@@ -18,12 +18,14 @@
                 fileInput.style.display = "block"; // Show file upload input
                 fileInput_text.style.display = "block";
                 linkInput_text.style.display = "none";
+                linkInput.value = "";
                 linkInput.style.display = "none"; // Hide link input
 
 
             } else if (linkOption.checked) {
                 fileInput.style.display = "none"; // Hide file upload input
                 linkInput.style.display = "block"; // Show link input
+                fileInput.value = "";
                 fileInput_text.style.display = "none";
                 linkInput_text.style.display = "block";
 
@@ -49,14 +51,14 @@
 
         <div id="file_input_container">
             <label for="client_file">Upload Client File:</label>
-            <input type="file" id="client_file" name="client_file" required>
+            <input type="file" id="client_file" name="client_file">
 
             <br><br>
         </div>
 
         <div id="link_input_container" style="display: none;">
             <label for="file_link">File Link:</label>
-            <input type="url" id="file_link" name="file_link" placeholder="Enter URL to the file" required>
+            <input type="url" id="file_link" name="file_link" placeholder="Enter URL to the file">
 
             <br><br>
         </div>

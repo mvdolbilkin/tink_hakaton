@@ -16,23 +16,22 @@ def index():
 def submit_id():
     brand_id = request.form.get('brand_id')
     uploaded_file = request.files.get('client_file')
+    #uploaded_link = request.form.get('file_link')
 
-    if not brand_id:
-        flash("Error: ID is missing")
-        return redirect(url_for('index'))
-
-        # Проверка на наличие загруженного файла
     if uploaded_file and uploaded_file.filename != '':
         filename = uploaded_file.filename
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         uploaded_file.save(file_path)
-
-        # Передаем brand_id и путь к файлу в метод budget_calculation
         result = budget_calculation(brand_id, file_path)
         return result
-    else:
-        flash("Error: File is missing")
-        return redirect(url_for('index'))
+
+    # if uploaded_link != "":
+    #     filename = какая то функци для s3
+    #     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    #     uploaded_link.save(file_path)
+
+
+
 
 @app.route('/budget-calculation/<calc_id>', methods=['GET'])
 def budget_calculation_route(calc_id):
